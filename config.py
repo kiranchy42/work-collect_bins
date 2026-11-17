@@ -35,5 +35,8 @@ def load_and_resolve_config(config_path):
         config = yaml.safe_load(f)
     
     vars_dict = config.get('vars', {})
+
+    vars_dict = resolve_vars(vars_dict, vars_dict)
     config = resolve_vars(config, vars_dict)
+    
     return config
